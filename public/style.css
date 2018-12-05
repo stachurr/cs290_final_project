@@ -20,8 +20,16 @@ text-decoration: none;
     text-decoration: none;
 }
 .site-title a:hover{
-    text-decoration: none;
+    text-decoration: underline;
 }
+.site-title a:visited {
+    color: #9966ff;
+}
+
+.site-subtitle a:visited {
+    color: #9966ff;
+}
+
 .site-subtitle{
     font-family: Georgia, serif;
     font-size: 24px;
@@ -30,7 +38,7 @@ text-decoration: none;
 }
 
 .site-subtitle a:hover{
-    text-decoration: none;
+    text-decoration: underline;
     color: black;
 }
 .track-item {
@@ -206,5 +214,8 @@ text-decoration: none;
     display: flex;
     align-items: left;
 }
-//.filter-input{
+#search-button a:hover{
+    background-color: #9966ff;
+}
 
+    
