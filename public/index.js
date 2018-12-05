@@ -19,7 +19,7 @@ function updateSearch() {
         }
 
         var track = libraryContent.firstElementChild.firstElementChild.firstElementChild;
-        if (track.getAttribute("data-title").toLowerCase() == title || title.length == 0) {
+        if (track.getAttribute("data-title").toLowerCase().includes(title) || title.length == 0) {
             //title pass
             if (track.getAttribute("data-artist").toLowerCase() == artist || artist.length == 0) {
                 //artist pass
