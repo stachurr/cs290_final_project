@@ -4,11 +4,11 @@ body {
 
 * {
 text-decoration: none;
+font-family: "Comic Sans MS", sans-serif;
  }
 
 .site-title{
     color: black;
-    font-family: "Comic Sans MS", sans-serif;
     font-size: 80px;
     font-weight: 100;
     margin: 0 0 10px 0px;
@@ -217,5 +217,3 @@ text-decoration: none;
 #search-button a:hover{
     background-color: #9966ff;
 }
-
-    
