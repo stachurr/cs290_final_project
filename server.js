@@ -34,10 +34,17 @@ app.use(bodyParser.json());
 */
 var mongoHost = process.env.MONGO_HOST || 'classmongo.engr.oregonstate.edu';
 var mongoPort = process.env.MONGO_PORT || 27017;
+<<<<<<< HEAD
 var mongoUser = process.env.MONGO_USER || 'cs290_vieiraas';
 var mongoPassword = process.env.MONGO_PASSWORD || 'projectPass';
 var mongoDBName = process.env.MONGO_DB_NAME || 'cs290_vieiraas';
 var PORT = process.env.PORT || 7999;
+=======
+var mongoUser = process.env.MONGO_USER || 'username';
+var mongoPassword = process.env.MONGO_PASSWORD || 'password';
+var mongoDBName = process.env.MONGO_DB_NAME || 'username';
+var PORT = process.env.PORT || 8000;
+>>>>>>> 7225ac2b7faf0f23b00dc4bc0e36e1ba523eee31
 var contentDir;
 var libData = {}; //store mongoDB id and tag data on server
 var mongoDBDatabase;
@@ -165,7 +172,7 @@ function parseTrackData(file, id) {
       "id": id,
       "title": tags.title.trim(),
       "artist": tags.artist.trim(),
-      "album": tags.album.replace(/\uFFFD/g, ''), //weird character keeps popping up
+      "album": tags.album.replace(/\u0000/g, ''), //weird character keeps popping up
       "year": tags.year.trim(),
       "genre": tags.genre.trim(),
       "cover":
@@ -189,20 +196,20 @@ function parseTrackData(file, id) {
 
     }
     else if(libData[tags.artist]) {
-      libData[tags.artist][tags.album] = {
+      libData[tags.artist][tags.album.replace(/\u0000/g, '')] = {
         tracks: []
       }
       // console.log('artist already in database');
-      libData[tags.artist][tags.album].tracks.push(tagDataObject);
+      libData[tags.artist][tags.album.replace(/\u0000/g, '')].tracks.push(tagDataObject);
     }
     else {
       libData[tags.artist] = {
-        [tags.album.replace("\u0000", "")]: {
+        [tags.album.replace(/\u0000/g, '')]: {
           tracks: []
         }
       };
       // console.log('new to the database');
-      libData[tags.artist][tags.album.replace("\u0000", "")].tracks.push(tagDataObject);
+      libData[tags.artist][tags.album.replace(/\u0000/g, '')].tracks.push(tagDataObject);
       console.log(libData);
     }
 };
@@ -211,12 +218,14 @@ function parseTrackData(file, id) {
 // The imgs are stored as base64 data in the libData object array,
 // because of this a route method is used instead of serving static files.
 app.get('/:artist/:album/:trackID', (req, res, next) => {
-    var tracks = libData[req.params.artist][req.params.album.replace(/\uFFFD/g, '')].tracks;
+    var tracks = libData[req.params.artist][req.params.album].tracks;
     for(var i = 0; i < tracks.length;  i++) {
       if(tracks[i].id == req.params.trackID) {
         if(tracks[i].cover.mime == 'null') {
           // console.log('no cover art');
-          next();
+          res.contentType('image/jpeg');
+          res.sendFile(path.join(__dirname, 'public/default-artwork.png'));
+          // next();
         }
         else {
           res.contentType('image/jpeg');
@@ -226,10 +235,10 @@ app.get('/:artist/:album/:trackID', (req, res, next) => {
     }
 });
 
-app.get('/*/*/*', (req, res, next) => {
-  res.contentType('image/jpeg');
-  res.sendFile(path.join(__dirname, 'public/default-artwork.png'));
-});
+// app.get('/*/*/*', (req, res, next) => {
+//   res.contentType('image/jpeg');
+//   res.sendFile(path.join(__dirname, 'public/default-artwork.png'));
+// });
 
 app.get('*', (req, res) => {
   // res.contentType('html/css');
@@ -238,6 +247,6 @@ app.get('*', (req, res) => {
 
 
 //catches all instances where there is no album artwork
-app.get('/public/img/*', (req, res, next) => {
-  res.sendFile(path.join(__dirname, 'public/default-artwork.png'));
-})
+// app.get('/public/img/*', (req, res, next) => {
+//   res.sendFile(path.join(__dirname, 'public/default-artwork.png'));
+// })
