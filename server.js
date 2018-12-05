@@ -34,10 +34,10 @@ app.use(bodyParser.json());
 */
 var mongoHost = process.env.MONGO_HOST || 'classmongo.engr.oregonstate.edu';
 var mongoPort = process.env.MONGO_PORT || 27017;
-var mongoUser = process.env.MONGO_USER || 'cs290_stachurr';
-var mongoPassword = process.env.MONGO_PASSWORD || 'DuckS361046';
-var mongoDBName = process.env.MONGO_DB_NAME || 'cs290_stachurr';
-var PORT = process.env.PORT || 8000;
+var mongoUser = process.env.MONGO_USER || 'cs290_speerj';
+var mongoPassword = process.env.MONGO_PASSWORD || 'monroe';
+var mongoDBName = process.env.MONGO_DB_NAME || 'cs290_speerj';
+var PORT = process.env.PORT || 8002;
 var contentDir;
 var libData = {}; //store mongoDB id and tag data on server
 var mongoDBDatabase;
