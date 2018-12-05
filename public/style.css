@@ -1,14 +1,14 @@
 body {
-    background-color: #e6f7ff;
+    background-color: #e6f3ff;
 }
 
 * {
-text-decoration: none;
-font-family: "Comic Sans MS", sans-serif;
+    text-decoration: none;
+    font-family: "Comic Sans MS", sans-serif;
  }
 
 .site-title{
-    color: black;
+    color: #000000;
     font-size: 80px;
     font-weight: 100;
     margin: 0 0 10px 0px;
@@ -21,8 +21,6 @@ font-family: "Comic Sans MS", sans-serif;
 }
 .site-title a:hover{
     text-decoration: underline;
-}
-.site-title a:visited {
     color: #9966ff;
 }
 
