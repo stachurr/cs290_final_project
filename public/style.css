@@ -1,4 +1,13 @@
+body {
+    background-color: #e6f7ff;
+}
+
+* {
+text-decoration: none;
+ }
+
 .site-title{
+    color: black;
     font-family: "Comic Sans MS", sans-serif;
     font-size: 80px;
     font-weight: 100;
