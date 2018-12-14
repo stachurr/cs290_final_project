@@ -7,5 +7,3 @@ As of right now, when the server is killed the files are gone. But the browser c
 The core of this app is built around nodeJS, Express, MongoDB, GridFS and Multer.
 To use, clone the repo to your local host, and set the following environment variables
 MONGO_USER ,MONGO_PASSWORD, MONGO_DB_NAME and PORT.
-
-All features of this application are in an experimental state, so any and all errors should be expected.  
